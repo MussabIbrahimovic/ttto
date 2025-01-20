@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #000;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      padding: 50px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="welcome-message">Welcome to the Dashboard!</h1>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    async function fetchDashboardData() {
+      const token = localStorage.getItem('token');
+
+      const response = await fetch('/dashboard', {
+        method: 'GET',
+        headers: {
+          'Authorization': token,
+        },
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        document.getElementById('welcome-message').textContent = `Welcome, ${data.message}`;
+      } else {
+        document.getElementById('welcome-message').textContent = 'Access denied. Please log in.';
+      }
+    }
+
+    function logout() {
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    }
+
+    fetchDashboardData();
+  </script>
+</body>
+</html>
