@@ -40,6 +40,15 @@ const saveInviteCodes = (codes) => {
   fs.writeFileSync(INVITE_CODES_DB, JSON.stringify(codes, null, 2));
 };
 
+// Generate a new invite code (for admin to create invite codes)
+app.post("/generate-invite-code", (req, res) => {
+  const inviteCodes = getInviteCodes();
+  const newCode = Math.random().toString(36).substring(2, 10); // Random invite code
+  inviteCodes.push(newCode);
+  saveInviteCodes(inviteCodes);
+  res.json({ inviteCode: newCode });
+});
+
 // Register a new user
 app.post("/register", async (req, res) => {
   const { username, password, inviteCode } = req.body;
@@ -71,15 +80,40 @@ app.post("/register", async (req, res) => {
   res.json({ message: "Registration successful", token });
 });
 
-// Generate a new invite code (for admin to create invite codes)
-app.post("/generate-invite-code", (req, res) => {
-  const inviteCodes = getInviteCodes();
-  const newCode = Math.random().toString(36).substring(2, 10); // Random invite code
-  inviteCodes.push(newCode);
-  saveInviteCodes(inviteCodes);
-  res.json({ inviteCode: newCode });
+// Login the user
+app.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  const users = getUsers();
+
+  const user = users.find(u => u.username === username);
+  if (!user) return res.status(400).json({ error: "User not found" });
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) return res.status(400).json({ error: "Invalid password" });
+
+  // Generate JWT token
+  const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: "1h" });
+  res.json({ message: "Login successful", token });
 });
 
+// Middleware to verify JWT token for protected routes
+const verifyToken = (req, res, next) => {
+  const token = req.headers["authorization"];
+  if (!token) return res.status(403).json({ error: "No token provided" });
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) return res.status(403).json({ error: "Invalid token" });
+    req.user = decoded;
+    next();
+  });
+};
+
+// Protected dashboard route
+app.get("/dashboard", verifyToken, (req, res) => {
+  res.json({ message: `Welcome to the dashboard, ${req.user.username}` });
+});
+
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
