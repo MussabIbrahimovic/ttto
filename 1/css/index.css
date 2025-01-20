@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #060708;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 800px;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+p {
+  color: #d0d0d0;
+  font-size: 1.2em;
+  margin-bottom: 40px;
+  animation: fadeIn 3s ease-in-out;
+}
+
+.lol{
+   color: #9c0101;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  animation: fadeIn 4s ease-in-out;
+}
+
+.button {
+  color: #fff;
+  background-color: #10121429;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 1em;
+  border: 1px solid #ffffff0f;
+  border-radius: 100px;
+  transition: all 0.5s ease;
+}
+
+.button:hover {
+  background-color: #580000;
+  transform: translateY(-5px);
+}
+
+hr {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid #d0d0d0;
+  margin: 30px 0;
+  animation: fadeIn 3.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.wave-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave {
+  position: relative;
+  width: 200%;
+  height: 100%;
+  background: url("../img/wave.svg")    repeat-x;
+  background-size: 50% 100px;
+  animation: wave 10s linear infinite;
+}
+
+
+a{
+  color: #fff;
+}
+a:visited {
+    color: white;
+}

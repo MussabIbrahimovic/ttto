@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://close.wtf/style.css">
+    <title>@1 - </title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232" />
+    <meta property="og:title" content="@1 - ">
+    <meta property="og:description" content="ii love girls 👀">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232">
+    <meta property="og:url" content="https://close.wtf/@1">
+    <meta property="og:type" content="website">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900 display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+            cursor: url(), auto;
+            overflow: hidden;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url(https://i.pinimg.com/736x/08/29/cc/0829cc1818d40b77f11df5740b264feb.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            filter: blur(10px);
+            z-index: -1;
+            background-position: center;
+        }
+
+        .profile-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 35px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            max-width: 600px;
+            height: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+        }
+
+        .profile-details {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-picture-container {
+           position: relative;
+           width: 115px;
+           height: 115px;
+        }
+
+	.overlay-container {
+          position: relative;
+          width: 115px;
+          height: 115px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .profile-picture {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+          z-index: 0;
+        }
+
+	.profile-overlay {
+          position: absolute;
+          top: -10px; 
+          left: -10px;
+          width: 135px; 
+          height: 135px;
+          z-index: 3;
+          object-fit: contain; 
+          pointer-events: none; 
+        }
+
+
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex-grow: 1;
+        }
+
+        .bio {
+            font-size: 15px;
+            color: #999999;
+            margin: 0;
+        }
+
+        .divider {
+            margin: 35px 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .badges {
+            background: rgba(240, 240, 240, 0.1);
+            padding: 1px 6px;
+            border-radius: 10px;
+            border: 1px solid rgba(235, 235, 235, 0.25);
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .badge {
+            height: 16px;
+            transition: transform 200ms ease-in-out;
+            margin: 0 2px;
+        }
+
+        .badge:hover {
+            transform: scale(1.1);
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            visibility: hidden;
+            font-size: 13px;
+            font-weight: 500;
+            width: 125px;
+            background-color: #333;;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #clickanywhere {
+            background-color: #080808;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+            font-size: 12px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 99;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 0.98;
+        }
+
+        .social-icons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-icons {
+            color: #fff;
+            font-size: 26px;
+            transition: 0.2s ease-in-out;
+            padding: 0 2px;
+            text-decoration: none;
+        }
+
+        .social-icons:hover {
+            color: #ccc;
+        }
+
+        .fa-brands,
+        .fab {
+            font-family: "Font Awesome 6 Brands";
+            font-weight: 400;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .sparkles {
+            background-image: url('https://close.wtf/sparkles/sparkles.gif');
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                width: 80%;
+                padding: 20px;
+            }
+        }
+
+        .profile-title {
+            color: white;
+            font-size: 21px;
+            margin: 0 0 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+  </head>
+  <body>
+  <div id="clickanywhere">
+    <h1>@</h1>
+</div>
+
+<audio id="song" volume="0.3">
+    <source id="audioSource" src="https://files.catbox.moe/jyb4o7.m4a">
+</audio>
+
+<video playsinline muted draggable="false" loop id="myVideo" class="background-container">
+    <source src="https://i.pinimg.com/736x/08/29/cc/0829cc1818d40b77f11df5740b264feb.jpg" type="video/mp4">
+</video>
+
+
+    </div>
+    <!-- Background Container -->
+    <div class="background-container" style="background-image: url('https://i.pinimg.com/736x/08/29/cc/0829cc1818d40b77f11df5740b264feb.jpg');"></div>
+    <!-- Profile Container -->
+    <div class="profile-container">
+      <!-- Profile Details -->
+      <div class="profile-details">
+              <div class="profile-picture-container">
+    <div class="overlay-container">
+        <img class="profile-picture" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/340px-Default_pfp.svg.png?20220226140232" alt="Profile Picture">
+                    <img class="profile-overlay" src="https://close.wtf/deco/angry.png">
+            </div>
+</div>
+                <div class="profile-info">
+        <h1 class="profile-title">
+    <span class="tooltip sparkles">
+        "kean" 
+        <span class="tooltiptext">User ID: 1</span>
+    </span> 
+            <div class="badges">
+                            <div class="tooltip">
+                <img class="badge" src="https://close.wtf/badges/developer.webp" alt="Developer Badge">
+                <span class="tooltiptext">Developer</span>
+              </div>
+                            <div class="tooltip">
+                <img class="badge" src="https://close.wtf/badges/premium.webp" alt="Premium Badge">
+                <span class="tooltiptext">Premium</span>
+              </div>
+                            <div class="tooltip">
+                <img class="badge" src="https://close.wtf/badges/staff.webp" alt="Staff Badge">
+                <span class="tooltiptext">Staff</span>
+              </div>
+                            <div class="tooltip">
+                <img class="badge" src="https://close.wtf/badges/og.webp" alt="OG Badge">
+                <span class="tooltiptext">OG</span>
+              </div>
+                            <div class="tooltip">
+                <img class="badge" src="https://close.wtf/badges/verified.webp" alt="Verified Badge">
+                <span class="tooltiptext">Verified</span>
+              </div>
+                            <div class="tooltip">
+                <img class="badge" src="https://close.wtf/badges/booster.webp" alt="Booster Badge">
+                <span class="tooltiptext">Booster</span>
+              </div>
+                            <div class="tooltip">
+                <img class="badge" src="https://close.wtf/badges/uzi.webp" alt="Uzi Badge">
+                <span class="tooltiptext">Uzi</span>
+              </div>
+                          </div>
+          </h1>
+             
+          <p class="bio">i love thots 👀</p>
+        </div>
+      </div>
+
+
+            <!-- Divider -->
+    <div class="divider"></div>
+  
+      <!-- Social Icons -->
+      <div class="social-icons-container">
+                <div class="tooltip">
+          <a href="https://discord.gg/" target="_blank" class="social-icons">
+            <i class="fa-brands fa-discord"></i>
+          </a>
+          <span class="tooltiptext">Discord</span>
+        </div>
+        
+        
+        
+	
+	
+	        <div class="tooltip">
+          <a href="https://discord.com" target="_blank" class="social-icons">
+            <i class="fa-solid fa-globe"></i>
+          </a>
+          <span class="tooltiptext">Website</span>
+        </div>
+        
+		<div class="tooltip">
+          <a class="social-icons" onclick="copyDiscord('@148042437')">
+           <i class="fa-brands fa-discord"></i>
+        </a>
+        <span class="tooltiptext">@158042437</span>
+       </div>
+             </div>
+    </div>
+
+
+
+        <script src="https://close.wtf/js/snow.js"></script>
+    
+     
+    <script>
+function copyDiscord(discord) {
+    navigator.clipboard.writeText(discord);
+    alert('Copied!');
+}
+
+let hasPlayedAudio = false;
+
+    document.addEventListener("click", function () {
+        if (hasPlayedAudio) return; 
+
+        hasPlayedAudio = true;
+
+        var clickAnywhereElement = document.getElementById("clickanywhere");
+        clickAnywhereElement.style.opacity = "0";
+        setTimeout(function () {
+            clickAnywhereElement.style.display = "none";
+        }, 500);
+
+        var video = document.getElementById("myVideo");
+        var audio = document.getElementById("song");
+
+        video.volume = 0.3;
+        video.play();
+        audio.play();
+    });
+</script>
+
+
+
+
+  </body>
+</html>
